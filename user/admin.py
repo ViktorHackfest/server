@@ -1,19 +1,55 @@
 from django.contrib import admin
 from . import models
 
-@admin.register(models.UserModel)
+
+@admin.register(models.TravelerModel)
 class UserAdmin(admin.ModelAdmin):
     fields = [
         'displayName',
         'email',
         'phoneNumber',
-        'photoURL',
     ]
     list_display = [
         'id',
         'displayName',
         'email',
         'phoneNumber',
-        'photoURL',
     ]
-    save_as = True
+
+
+@admin.register(models.TourGuideModel)
+class TourGuideAdmin(admin.ModelAdmin):
+    fields = [
+        'displayName',
+        'email',
+        'phoneNumber',
+        'address',
+    ]
+
+    list_display = [
+        'id',
+        'displayName',
+        'email',
+        'phoneNumber',
+        'address',
+    ]
+
+
+@admin.register(models.SellerModel)
+class SellerAdmin(admin.ModelAdmin):
+    fields = [
+        'displayName',
+        'email',
+        'phoneNumber',
+        'address',
+        'rating'
+    ]
+
+    list_display = [
+        'id',
+        'displayName',
+        'email',
+        'phoneNumber',
+        'address',
+        'rating'
+    ]
