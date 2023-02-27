@@ -8,4 +8,4 @@ class UserModel(models.Model):
     photoURL = models.FileField(upload_to="", null=False, blank=True)
 
     def _str_(self):
-        return f"{self.displayName} - (id= {self.id})"
+        return f"{self.displayName} - (id= {self.id}) "
