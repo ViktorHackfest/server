@@ -7,7 +7,16 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = ('id', 'name', 'province')
 
-class DestinationSerializer(serializers.ModelSerializer):
+class DestinationListSerializer(serializers.ModelSerializer):
+    city = serializers.PrimaryKeyRelatedField(queryset=City.objects.all())
+
+    class Meta:
+        model = Destination
+        fields = ('id', 'name', 'city')
+
+class DestinationDetailSerializer(serializers.ModelSerializer):
+    city = serializers.PrimaryKeyRelatedField(queryset=City.objects.all())
+
     class Meta:
         model = Destination
         fields = ('id', 'name', 'city', 'description')
