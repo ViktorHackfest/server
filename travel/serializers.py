@@ -8,14 +8,14 @@ class CitySerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'province')
 
 class DestinationListSerializer(serializers.ModelSerializer):
-    city = serializers.PrimaryKeyRelatedField(queryset=City.objects.all())
+    city = CitySerializer(read_only=True)
 
     class Meta:
         model = Destination
         fields = ('id', 'name', 'city')
 
 class DestinationDetailSerializer(serializers.ModelSerializer):
-    city = serializers.PrimaryKeyRelatedField(queryset=City.objects.all())
+    city = CitySerializer(read_only=True)
 
     class Meta:
         model = Destination
