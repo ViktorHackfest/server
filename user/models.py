@@ -1,30 +1,25 @@
 from django.db import models
-
+from travel.models import City
 
 
 class TravelerModel(models.Model):
-    id = models.AutoField(primary_key=True)
-    displayName = models.CharField(max_length=100)
-    email = models.EmailField(max_length=50, unique=True)
-    phoneNumber = models.BigIntegerField()
+    id = models.CharField(max_length=500, primary_key=True)
+    uang = models.BigIntegerField()
 
     def __str__(self):
-        return f"Traveler: {self.displayName} - (id= {self.id})"
+        return f"Traveler: (id= {self.id}) | (uang = {self.uang})"
 
 
 class TourGuideModel(models.Model):
-    id = models.AutoField(primary_key=True)
-    displayName = models.CharField(max_length=100)
-    email = models.EmailField(max_length=50, unique=True)
-    phoneNumber = models.BigIntegerField()
-    address = models.TextField()
+    id = models.CharField(max_length=500, primary_key=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Tour Guide: {self.displayName} - (id= {self.id})"
+        return f"Tour Guide: (id= {self.id}) | (city = {self.city.name}) | (province = {self.city.province})"
 
 
 class SellerModel(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.CharField(max_length=500, primary_key=True)
     displayName = models.CharField(max_length=100)
     email = models.EmailField(max_length=50, unique=True)
     phoneNumber = models.BigIntegerField()

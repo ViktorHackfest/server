@@ -5,33 +5,25 @@ from . import models
 @admin.register(models.TravelerModel)
 class UserAdmin(admin.ModelAdmin):
     fields = [
-        'displayName',
-        'email',
-        'phoneNumber',
+        'id',
+        'uang',
     ]
     list_display = [
         'id',
-        'displayName',
-        'email',
-        'phoneNumber',
+        'uang',
     ]
 
 
 @admin.register(models.TourGuideModel)
 class TourGuideAdmin(admin.ModelAdmin):
     fields = [
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
+        'id',
+        'city',
     ]
 
     list_display = [
         'id',
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
+        'city',
     ]
 
 

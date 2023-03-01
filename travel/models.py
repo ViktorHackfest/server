@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class City(models.Model):
     PROVINCE_CHOICES = [
         ('ACEH', 'Aceh'),
@@ -43,8 +45,9 @@ class City(models.Model):
     province = models.CharField(max_length=50, choices=PROVINCE_CHOICES)
 
     def __str__(self):
-        return self.name
-    
+        return self.province
+
+
 class Destination(models.Model):
     name = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
