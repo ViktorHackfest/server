@@ -5,51 +5,30 @@ from . import models
 @admin.register(models.TravelerModel)
 class UserAdmin(admin.ModelAdmin):
     fields = [
-        'displayName',
-        'email',
-        'phoneNumber',
+        "id",
+        "money",
     ]
     list_display = [
-        'id',
-        'displayName',
-        'email',
-        'phoneNumber',
+        "id",
+        "money",
     ]
 
 
 @admin.register(models.TourGuideModel)
 class TourGuideAdmin(admin.ModelAdmin):
     fields = [
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
+        "id",
+        "city",
     ]
 
     list_display = [
-        'id',
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
+        "id",
+        "city",
     ]
 
 
 @admin.register(models.SellerModel)
 class SellerAdmin(admin.ModelAdmin):
-    fields = [
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
-        'rating'
-    ]
+    fields = ["displayName", "email", "phoneNumber", "address", "rating"]
 
-    list_display = [
-        'id',
-        'displayName',
-        'email',
-        'phoneNumber',
-        'address',
-        'rating'
-    ]
+    list_display = ["id", "displayName", "email", "phoneNumber", "address", "rating"]
