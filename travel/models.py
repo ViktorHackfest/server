@@ -46,7 +46,7 @@ class City(models.Model):
     province = models.CharField(max_length=50, choices=PROVINCE_CHOICES)
 
     def __str__(self):
-        return self.province
+        return self.name
 
 
 class Destination(models.Model):

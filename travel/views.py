@@ -94,7 +94,11 @@ class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
         try:
             partial = kwargs.pop("partial", False)
             instance = self.get_object()
-            allowed_fields = ["start_date", "end_date", "status"]  # list of fields that can be updated
+            allowed_fields = [
+                "start_date",
+                "end_date",
+                "status",
+            ]  # list of fields that can be updated
 
             # Check if the updated fields are allowed
             for field in request.data.keys():
@@ -105,14 +109,16 @@ class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
                     )
 
             # Update the allowed fields
-            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer = self.get_serializer(
+                instance, data=request.data, partial=partial
+            )
             serializer.is_valid(raise_exception=True)
             self.perform_update(serializer)
 
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except ValidationError as e:
             return Response({"error": e.message}, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def perform_update(self, serializer):
         booking = serializer.save()
         booking.validate_price()
