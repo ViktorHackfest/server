@@ -13,6 +13,7 @@ from .serializers import (
 
 
 class DestinationFilter(filters.FilterSet):
+    name = filters.CharFilter(field_name="name", lookup_expr="icontains")
     city = filters.CharFilter(field_name="city__name", lookup_expr="icontains")
     province = filters.ChoiceFilter(
         choices=City.PROVINCE_CHOICES, field_name="city__province"
@@ -20,7 +21,7 @@ class DestinationFilter(filters.FilterSet):
 
     class Meta:
         model = Destination
-        fields = ["city", "province"]
+        fields = ["name", "city", "province"]
 
 
 class CityListAPIView(generics.ListCreateAPIView):
@@ -49,14 +50,20 @@ class DestinationDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DestinationDetailSerializer
 
 
-class BookingCreateAPIView(generics.CreateAPIView):
-    queryset = Booking.objects.all()
+class BookingListAPIView(generics.ListCreateAPIView):
     serializer_class = BookingSerializer
+
+    def get_queryset(self):
+        traveler = self.request.META.get("HTTP_X_FIREBASE_ID")
+        return self.queryset.filter(traveler=traveler)
 
     def create(self, request, *args, **kwargs):
         try:
+            print("sini")
+            traveler = self.request.META.get("HTTP_X_FIREBASE_ID")
+            print("error disini")
             data = request.data
-            data["traveler"] = request.META.get("HTTP_X_FIREBASE_ID")
+            data["traveler"] = traveler
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
@@ -71,15 +78,6 @@ class BookingCreateAPIView(generics.CreateAPIView):
         booking = serializer.save()
         booking.validate_price()
         booking.validate_date()
-
-
-class BookingListAPIView(generics.ListAPIView):
-    queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
-
-    def get_queryset(self):
-        traveler = self.request.META.get("HTTP_X_FIREBASE_ID")
-        return self.queryset.filter(traveler=traveler)
 
 
 class BookingDetailAPIView(generics.RetrieveUpdateAPIView):

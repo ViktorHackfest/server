@@ -7,7 +7,6 @@ from .serializers import TravelerSerializer, TourGuideSerializer
 
 
 class RegisterAPIView(APIView):
-
     def post(self, request, format=None):
         type_user = request.query_params.get("type_user", None)
         if type_user == "traveler":
@@ -27,6 +26,7 @@ class RegisterAPIView(APIView):
 class TourGuideListAPIView(generics.ListCreateAPIView):
     queryset = TourGuideModel.objects.all()
     serializer_class = TourGuideSerializer
+
 
 class TourGuideDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = TourGuideModel.objects.all()
