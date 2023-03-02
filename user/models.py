@@ -4,10 +4,10 @@ from travel.models import City
 
 class TravelerModel(models.Model):
     id = models.CharField(max_length=500, primary_key=True)
-    uang = models.BigIntegerField()
+    money = models.BigIntegerField()
 
     def __str__(self):
-        return f"Traveler: (id= {self.id}) | (uang = {self.uang})"
+        return f"Traveler: (id= {self.id})"
 
 
 class TourGuideModel(models.Model):
@@ -15,7 +15,7 @@ class TourGuideModel(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Tour Guide: (id= {self.id}) | (city = {self.city.name}) | (province = {self.city.province})"
+        return f"Tour Guide: (id= {self.id})"
 
 
 class SellerModel(models.Model):

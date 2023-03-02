@@ -6,7 +6,7 @@ data = {
     "tour_guide": "32432242",
     "start_date": "2020-01-01",
     "end_date": "2020-01-02",
-    "price": "175000",
+    "price": "200000",
     "is_offline": "True",
     "status": "BOOKED",
 }

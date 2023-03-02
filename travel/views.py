@@ -59,12 +59,12 @@ class BookingListAPIView(generics.ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         try:
-            print("sini")
             traveler = self.request.META.get("HTTP_X_FIREBASE_ID")
-            print("error disini")
-            data = request.data
+            data = request.data.copy()
             data["traveler"] = traveler
+            print(data)
             serializer = self.get_serializer(data=data)
+            print(serializer)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
@@ -78,6 +78,9 @@ class BookingListAPIView(generics.ListCreateAPIView):
         booking = serializer.save()
         booking.validate_price()
         booking.validate_date()
+        booking.validate_billing()
+        booking.traveler.money = booking.traveler.money - booking.price
+        booking.traveler.save()
 
 
 class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
@@ -93,11 +96,8 @@ class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
             partial = kwargs.pop("partial", False)
             instance = self.get_object()
             allowed_fields = [
-                "start_date",
-                "end_date",
                 "status",
             ]  # list of fields that can be updated
-
             # Check if the updated fields are allowed
             for field in request.data.keys():
                 if field not in allowed_fields:
@@ -121,3 +121,8 @@ class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
         booking = serializer.save()
         booking.validate_price()
         booking.validate_date()
+        booking.validate_billing()
+        booking.traveler.money = (
+            booking.traveler.money + booking.price * 70 / 100
+        )
+        booking.traveler.save()

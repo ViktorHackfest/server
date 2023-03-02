@@ -76,7 +76,7 @@ class Booking(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return f"Booking: (id= {self.id}) | (traveler = {self.traveler.id}) | (destination = {self.destination.name}) | (date = {self.date}) | (price = {self.price}) | (status = {self.status})"
+        return f"Booking: (id= {self.id})"
 
     def validate_date(self):
         if self.start_date > self.end_date:
@@ -90,3 +90,7 @@ class Booking(models.Model):
 
         if self.price != expected_price:
             raise ValidationError("Price is not valid")
+
+    def validate_billing(self):
+        if self.traveler.money < self.price:
+            raise ValidationError("Traveler doesn't have enough money")

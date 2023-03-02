@@ -6,11 +6,11 @@ from . import models
 class UserAdmin(admin.ModelAdmin):
     fields = [
         "id",
-        "uang",
+        "money",
     ]
     list_display = [
         "id",
-        "uang",
+        "money",
     ]
 
 
