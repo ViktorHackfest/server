@@ -14,7 +14,7 @@ class SellerSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TourGuidePreviewSerializer(serializers.ModelSerializer):
+class TourGuideSerializer(serializers.ModelSerializer):
     class Meta:
         model = TourGuideModel
         fields = "__all__"

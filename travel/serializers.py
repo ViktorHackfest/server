@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import City, Destination
+from .models import City, Destination, Booking
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,3 +20,8 @@ class DestinationDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Destination
         fields = ('id', 'name', 'city', 'description')
+
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = '__all__'

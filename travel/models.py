@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -55,3 +56,22 @@ class Destination(models.Model):
 
     def __str__(self):
         return self.name
+
+class Booking(models.Model):
+    traveler = models.ForeignKey("user.TravelerModel", on_delete=models.CASCADE)
+    tour_guide = models.ForeignKey("user.TourGuideModel", on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    price = models.BigIntegerField()
+    status = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"Booking: (id= {self.id}) | (traveler = {self.traveler.id}) | (destination = {self.destination.name}) | (date = {self.date}) | (price = {self.price}) | (status = {self.status})"
+    
+    def validate_date(self):
+        if self.start_date > self.end_date:
+            raise ValidationError("Start date must be before than end date")
+
+    def validate_price(self):
+        if self.price != 100000 * (self.end_date - self.start_date).days:
+            raise ValidationError("Price is not valid")

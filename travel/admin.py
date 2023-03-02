@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import City, Destination
+from .models import City, Destination, Booking
 
 
 @admin.register(City)
@@ -25,4 +25,23 @@ class DestinationAdmin(admin.ModelAdmin):
         'name',
         'city',
         'description'
+    ]
+
+@admin.register(Booking)
+class BookingAdmin(admin.ModelAdmin):
+    fields = [
+        'traveler',
+        'tour_guide',
+        'start_date',
+        'end_date',
+        'price',
+        'status'
+    ]
+    list_display = [
+        'traveler',
+        'tour_guide',
+        'start_date',
+        'end_date',
+        'price',
+        'status'
     ]
