@@ -4,8 +4,8 @@ from .models import City, Destination, Booking
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    fields = ["name", "province"]
-    list_display = ["id", "name", "province"]
+    fields = ["name", "province", "lat", "lng"]
+    list_display = ["id", "name", "province", "lat", "lng"]
 
 
 @admin.register(Destination)
