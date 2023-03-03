@@ -13,14 +13,14 @@ class DestinationListSerializer(serializers.ModelSerializer):
     city = CitySerializer(read_only=True)
     class Meta:
         model = Destination
-        fields = ("id", "name", "city")
+        fields = ("id", "name", "city", "image")
 
 
 class DestinationDetailSerializer(serializers.ModelSerializer):
     city = CitySerializer(read_only=True)
     class Meta:
         model = Destination
-        fields = ("id", "name", "city", "description")
+        fields = ("id", "name", "city", "description", "image")
 
 
 class BookingSerializer(serializers.ModelSerializer):
