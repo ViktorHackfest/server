@@ -4,7 +4,7 @@ from travel.models import City
 
 class TravelerModel(models.Model):
     id = models.CharField(max_length=500, primary_key=True)
-    money = models.BigIntegerField()
+    money = models.BigIntegerField(default=1000000)
 
     def __str__(self):
         return f"Traveler: (id= {self.id})"

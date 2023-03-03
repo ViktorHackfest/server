@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from google.oauth2 import service_account
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -126,3 +127,16 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Google Cloud Storage
+# https://cloud.google.com/storage/docs/reference/libraries#client-libraries-install-python
+
+GS_BUCKET_NAME = "tripfolk"
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+MEDIA_URL = "URL.to.GCS/"
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    Path.joinpath(BASE_DIR, "service_account.json")
+)
+GS_EXPIRATION = timedelta(minutes=5)
+
+GS_BLOB_CHUNK_SIZE = 1024 * 256 * 40
