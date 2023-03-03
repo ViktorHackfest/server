@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from .models import TravelerModel, SellerModel, TourGuideModel
+from travel.serializers import CitySerializer
 
 
 class TravelerSerializer(serializers.ModelSerializer):
@@ -15,6 +17,7 @@ class SellerSerializer(serializers.ModelSerializer):
 
 
 class TourGuideSerializer(serializers.ModelSerializer):
+    city = CitySerializer(read_only=True)
     class Meta:
         model = TourGuideModel
         fields = "__all__"
