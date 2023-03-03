@@ -24,28 +24,24 @@ class DestinationFilter(filters.FilterSet):
         fields = ["name", "city", "province"]
 
 
-class CityListAPIView(generics.ListCreateAPIView):
+class CityListAPIView(generics.ListAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
 
 
-class CityDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class CityDetailAPIView(generics.RetrieveAPIView):
     queryset = City.objects.all()
     serializer_class = CitySerializer
 
 
-class DestinationListAPIView(generics.ListCreateAPIView):
+class DestinationListAPIView(generics.ListAPIView):
     queryset = Destination.objects.all()
     filter_backends = [filters.DjangoFilterBackend]
     filterset_class = DestinationFilter
-
-    def get_serializer_class(self):
-        if self.request.method == "GET":
-            return DestinationListSerializer
-        return DestinationDetailSerializer
+    serializer_class = DestinationListSerializer
 
 
-class DestinationDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class DestinationDetailAPIView(generics.RetrieveAPIView):
     queryset = Destination.objects.all()
     serializer_class = DestinationDetailSerializer
 

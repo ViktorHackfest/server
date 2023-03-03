@@ -10,12 +10,14 @@ class CitySerializer(serializers.ModelSerializer):
 
 
 class DestinationListSerializer(serializers.ModelSerializer):
+    city = CitySerializer(read_only=True)
     class Meta:
         model = Destination
         fields = ("id", "name", "city")
 
 
 class DestinationDetailSerializer(serializers.ModelSerializer):
+    city = CitySerializer(read_only=True)
     class Meta:
         model = Destination
         fields = ("id", "name", "city", "description")
