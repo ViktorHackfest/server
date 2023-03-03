@@ -23,11 +23,11 @@ class RegisterAPIView(APIView):
         return Response({"success": True, "user_data": user_data})
 
 
-class TourGuideListAPIView(generics.ListCreateAPIView):
+class TourGuideListAPIView(generics.ListAPIView):
     queryset = TourGuideModel.objects.all()
     serializer_class = TourGuideSerializer
 
 
-class TourGuideDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class TourGuideDetailAPIView(generics.RetrieveAPIView):
     queryset = TourGuideModel.objects.all()
     serializer_class = TourGuideSerializer
