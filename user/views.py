@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
 
-from .models import TourGuideModel
+from .models import TourGuideModel, TravelerModel
 from .serializers import TravelerSerializer, TourGuideSerializer
 
 
@@ -22,6 +22,10 @@ class RegisterAPIView(APIView):
         user_data = serializer.data
         return Response({"success": True, "user_data": user_data})
 
+
+class TravelerListAPIView(generics.ListAPIView):
+    queryset = TravelerModel.objects.all()
+    serializer_class = TravelerSerializer
 
 class TourGuideListAPIView(generics.ListAPIView):
     queryset = TourGuideModel.objects.all()
