@@ -47,6 +47,7 @@ class DestinationDetailAPIView(generics.RetrieveAPIView):
 
 
 class BookingListAPIView(generics.ListCreateAPIView):
+    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
     def get_queryset(self):

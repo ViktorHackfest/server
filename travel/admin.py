@@ -22,6 +22,7 @@ class BookingAdmin(admin.ModelAdmin):
         "start_date",
         "end_date",
         "price",
+        "is_offline",
         "status",
     ]
     list_display = [
@@ -31,5 +32,6 @@ class BookingAdmin(admin.ModelAdmin):
         "start_date",
         "end_date",
         "price",
+        "is_offline",
         "status",
     ]
