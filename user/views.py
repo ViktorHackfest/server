@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 
 from .models import TourGuideModel, TravelerModel
-from .serializers import TravelerSerializer, TourGuideSerializer
+from .serializers import TravelerSerializer, TourGuideRegisterSerializer, TourGuideSerializer
 
 
 class RegisterAPIView(APIView):
@@ -12,7 +12,7 @@ class RegisterAPIView(APIView):
         if type_user == "traveler":
             serializer_class = TravelerSerializer
         elif type_user == "tour_guide":
-            serializer_class = TourGuideSerializer
+            serializer_class = TourGuideRegisterSerializer
         else:
             return Response({"success": False})
 

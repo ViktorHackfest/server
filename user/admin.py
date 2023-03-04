@@ -19,11 +19,15 @@ class TourGuideAdmin(admin.ModelAdmin):
     fields = [
         "id",
         "city",
+        "name",
+        "photo_url",
     ]
 
     list_display = [
         "id",
         "city",
+        "name",
+        "photo_url",
     ]
 
 

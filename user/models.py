@@ -13,6 +13,8 @@ class TravelerModel(models.Model):
 class TourGuideModel(models.Model):
     id = models.CharField(max_length=500, primary_key=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    photo_url = models.URLField()
 
     def __str__(self):
         return f"Tour Guide: (id= {self.id})"
