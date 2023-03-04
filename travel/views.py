@@ -119,7 +119,5 @@ class BookingDetailAPIView(generics.RetrieveUpdateAPIView):
         booking.validate_price()
         booking.validate_date()
         booking.validate_billing()
-        booking.traveler.money = (
-            booking.traveler.money + booking.price * 70 / 100
-        )
+        booking.traveler.money = booking.traveler.money + booking.price * 70 / 100
         booking.traveler.save()

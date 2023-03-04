@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import RegisterAPIView, TourGuideListAPIView, TourGuideDetailAPIView, TravelerListAPIView
+from .views import (
+    RegisterAPIView,
+    TourGuideListAPIView,
+    TourGuideDetailAPIView,
+    TravelerListAPIView,
+)
 
 app_name = "user"
 

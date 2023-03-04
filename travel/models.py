@@ -46,7 +46,9 @@ class City(models.Model):
     province = models.CharField(max_length=50, choices=PROVINCE_CHOICES)
     lng = models.FloatField()
     lat = models.FloatField()
-    image = models.ImageField(upload_to="city_images", default="city_images/default.jpg")
+    image = models.ImageField(
+        upload_to="city_images", default="city_images/default.jpg"
+    )
 
     def __str__(self):
         return self.name
@@ -56,7 +58,9 @@ class Destination(models.Model):
     name = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     description = models.TextField()
-    image = models.ImageField(upload_to="destination_images", default="destination_images/default.jpg")
+    image = models.ImageField(
+        upload_to="destination_images", default="destination_images/default.jpg"
+    )
 
     def __str__(self):
         return self.name

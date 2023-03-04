@@ -11,6 +11,7 @@ class CitySerializer(serializers.ModelSerializer):
 
 class DestinationListSerializer(serializers.ModelSerializer):
     city = CitySerializer(read_only=True)
+
     class Meta:
         model = Destination
         fields = ("id", "name", "city", "image")
@@ -18,6 +19,7 @@ class DestinationListSerializer(serializers.ModelSerializer):
 
 class DestinationDetailSerializer(serializers.ModelSerializer):
     city = CitySerializer(read_only=True)
+
     class Meta:
         model = Destination
         fields = ("id", "name", "city", "description", "image")
@@ -27,6 +29,7 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = [
+            "id",
             "traveler",
             "tour_guide",
             "start_date",

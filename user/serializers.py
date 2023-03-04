@@ -18,6 +18,7 @@ class SellerSerializer(serializers.ModelSerializer):
 
 class TourGuideSerializer(serializers.ModelSerializer):
     city = CitySerializer(read_only=True)
+
     class Meta:
         model = TourGuideModel
         fields = "__all__"

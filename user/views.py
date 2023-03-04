@@ -27,6 +27,7 @@ class TravelerListAPIView(generics.ListAPIView):
     queryset = TravelerModel.objects.all()
     serializer_class = TravelerSerializer
 
+
 class TourGuideListAPIView(generics.ListAPIView):
     queryset = TourGuideModel.objects.all()
     serializer_class = TourGuideSerializer
