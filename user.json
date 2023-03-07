@@ -1,0 +1,7 @@
+[
+  {
+    "model": "user.travelermodel",
+    "pk": "106189942053638051745",
+    "fields": { "money": 1000000 }
+  }
+]

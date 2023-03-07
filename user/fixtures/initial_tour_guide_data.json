@@ -1,0 +1,29 @@
+[
+  {
+    "model": "user.tourguidemodel",
+    "pk": "1",
+    "fields": {
+      "city": 1,
+      "name": "Azizah Rani",
+      "photo_url": "https://i.pinimg.com/564x/13/13/10/13131039a9235ede10084518fa8e2e71.jpg"
+    }
+  },
+  {
+    "model": "user.tourguidemodel",
+    "pk": "2",
+    "fields": {
+      "city": 2,
+      "name": "Feri Sulu",
+      "photo_url": "https://i.pinimg.com/564x/9a/96/e6/9a96e6fb1815d83f6834ddca45c878d7.jpg"
+    }
+  },
+  {
+    "model": "user.tourguidemodel",
+    "pk": "3",
+    "fields": {
+      "city": 1,
+      "name": "Fia Lestari",
+      "photo_url": "https://i.pinimg.com/564x/d0/4a/7e/d04a7e4a9d3cbc45b91f9b0ac00a66bd.jpg"
+    }
+  }
+]

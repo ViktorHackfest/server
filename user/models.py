@@ -10,6 +10,7 @@ class TravelerModel(models.Model):
         return f"Traveler: (id= {self.id})"
 
 
+# ./manage.py dumpdata user.tourguidemodel > user.json
 class TourGuideModel(models.Model):
     id = models.CharField(max_length=500, primary_key=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
