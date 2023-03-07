@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from google.oauth2 import service_account
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-(^@-e=4!6k1-_py9fjeu-iaphpi$9&5f!c*%_4pk@fb@2fb4_8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["https://*.railway.app", "https://*.127.0.0.1"]
@@ -60,6 +63,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "viktor_hackfest.urls"
@@ -67,7 +71,7 @@ ROOT_URLCONF = "viktor_hackfest.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [ BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -92,6 +96,11 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+if PRODUCTION:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600, ssl_require=True
+    )
 
 
 # Password validation
@@ -128,10 +137,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [Path.joinpath(BASE_DIR, "static")]
-STATIC_ROOT = Path.joinpath(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
+    directory.mkdir(exist_ok=True)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
