@@ -1,0 +1,46 @@
+[
+  {
+    "model": "travel.city",
+    "pk": 1,
+    "fields": {
+      "name": "Sleman",
+      "province": "DI YOGYAKARTA",
+      "lng": 8.0,
+      "lat": 8.0,
+      "image": "city_images/Rumah_Hobbit_-_Sleman.jpeg"
+    }
+  },
+  {
+    "model": "travel.city",
+    "pk": 2,
+    "fields": {
+      "name": "Bantul",
+      "province": "DI YOGYAKARTA",
+      "lng": 5.0,
+      "lat": 5.0,
+      "image": "city_images/Jatisari_-_Bantul.jpeg"
+    }
+  },
+  {
+    "model": "travel.city",
+    "pk": 3,
+    "fields": {
+      "name": "Kulonprogo",
+      "province": "DI YOGYAKARTA",
+      "lng": 3.0,
+      "lat": 3.0,
+      "image": "city_images/Kalibiru_-_Kulonprogo.jpeg"
+    }
+  },
+  {
+    "model": "travel.city",
+    "pk": 4,
+    "fields": {
+      "name": "Waisai",
+      "province": "PAPUA BARAT",
+      "lng": 9.0,
+      "lat": 9.0,
+      "image": "city_images/Raja_Empat_-_Papua_Barat.jpeg"
+    }
+  }
+]

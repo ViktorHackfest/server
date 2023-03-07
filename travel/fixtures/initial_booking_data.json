@@ -1,0 +1,41 @@
+[
+  {
+    "model": "travel.booking",
+    "pk": 1,
+    "fields": {
+      "traveler": "106189942053638051745",
+      "tour_guide": "1",
+      "start_date": "2023-03-03",
+      "end_date": "2023-03-03",
+      "price": 100000,
+      "is_offline": true,
+      "status": "BOOKED"
+    }
+  },
+  {
+    "model": "travel.booking",
+    "pk": 2,
+    "fields": {
+      "traveler": "106189942053638051745",
+      "tour_guide": "2",
+      "start_date": "2023-03-04",
+      "end_date": "2023-03-04",
+      "price": 10000,
+      "is_offline": true,
+      "status": "CANCELLED"
+    }
+  },
+  {
+    "model": "travel.booking",
+    "pk": 3,
+    "fields": {
+      "traveler": "106189942053638051745",
+      "tour_guide": "3",
+      "start_date": "2023-03-04",
+      "end_date": "2023-03-04",
+      "price": 900000,
+      "is_offline": true,
+      "status": "COMPLETED"
+    }
+  }
+]

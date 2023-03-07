@@ -1,0 +1,22 @@
+[
+  {
+    "model": "travel.destination",
+    "pk": 2,
+    "fields": {
+      "name": "Lava Bantal",
+      "city": 1,
+      "description": "Asik Yoyow",
+      "image": "destination_images/220559.jpg"
+    }
+  },
+  {
+    "model": "travel.destination",
+    "pk": 3,
+    "fields": {
+      "name": "Parangtritis",
+      "city": 2,
+      "description": "Enak",
+      "image": "destination_images/parangtritis.jpeg"
+    }
+  }
+]
